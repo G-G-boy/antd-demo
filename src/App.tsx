@@ -1,12 +1,13 @@
 import {FC} from 'react';
-import './App.scss';
-import img from './assets/imgs/timg.jpg';
+import {Provider} from 'react-redux';
+import store from '@/store';
+import Router from '@/router';
 
 const App: FC = () => {
     return (
-        <div>
-            <img src={img} />
-        </div>
+        <Provider store={store}>
+            <Router />
+        </Provider>
     );
 };
 

@@ -15,6 +15,13 @@ module.exports = function (api) {
     ];
     const plugins = [
         '@babel/plugin-transform-runtime',
+        [
+            'import',
+            {
+                libraryName: 'antd',
+                style: 'css',
+            },
+        ],
         !api.env('production') && 'react-refresh/babel',
     ].filter(Boolean);
     api.cache(true);
