@@ -1,0 +1,8 @@
+{
+  "title": "antd-demo",
+  "login": "Login",
+  "login.username": "username",
+  "login.input.username.please": "username",
+  "login.password": "passwrod",
+  "login.input.password.please": "password"
+}
