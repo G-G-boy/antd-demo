@@ -7,12 +7,13 @@ import zh_cn from '@/locale/langs/zh_cn.json';
 import en_us from '@/locale/langs/en_us.json';
 
 const cache = createIntlCache();
-let intl: IntlShape;
 
 const messages: {[key in LangType]: {}} = {
     'zh-cn': zh_cn,
     'en-us': en_us,
 };
+
+let intl: IntlShape;
 
 const AppIntlProvider: FC = ({children}) => {
     const lang = useSelector<ReducersType, LangType>((state) => state.necessity.lang);
@@ -23,7 +24,6 @@ const AppIntlProvider: FC = ({children}) => {
         },
         cache,
     );
-
     return <RawIntlProvider value={intl}>{children}</RawIntlProvider>;
 };
 

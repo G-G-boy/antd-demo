@@ -1,7 +1,8 @@
 import {FC} from 'react';
 import {Menu} from 'antd';
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 import routeConfig, {RouteConfig} from '@/router/route-config';
+import Logo from '@/components/logo';
 
 const {SubMenu} = Menu;
 
@@ -23,11 +24,35 @@ const menuListMap = (routeConfig: RouteConfig) => {
     });
 };
 
+const getDefaultOpenKeys = (pathname: string): string[] => {
+    let pathArr: string[] = [];
+    pathname
+        .split('/')
+        .filter((value) => value)
+        .map((value) => '/' + value)
+        .reduce((previousValue, currentValue) => {
+            const newValue = previousValue + currentValue;
+            pathArr.push(newValue);
+            return newValue;
+        }, '');
+    return pathArr;
+};
+
 const LayoutMenu: FC = () => {
+    const {pathname} = useLocation();
+
     return (
-        <Menu mode="inline" selectedKeys={[]} defaultOpenKeys={[]}>
-            {menuListMap(routeConfig)}
-        </Menu>
+        <>
+            <Logo />
+            <Menu
+                mode="inline"
+                theme="dark"
+                defaultOpenKeys={getDefaultOpenKeys(pathname)}
+                defaultSelectedKeys={[pathname]}
+            >
+                {menuListMap(routeConfig)}
+            </Menu>
+        </>
     );
 };
 

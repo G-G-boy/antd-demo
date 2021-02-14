@@ -1,4 +1,4 @@
-import {createStore, combineReducers} from 'redux';
+import {createStore, combineReducers, Store} from 'redux';
 import necessityReducer from '@/store/necessity/necessity.reducer';
 import {NecessityActionType} from '@/store/necessity/necessity.action';
 import {NecessityState} from '@/store/necessity/necessity.state';
@@ -16,8 +16,11 @@ const reducers = combineReducers<ReducersType>({
     setting: settingReducer,
 });
 
-const store = createStore<ReducersType, NecessityActionType | SettingActionType, any, any>(
-    reducers,
-);
+const store: Store<ReducersType, NecessityActionType | SettingActionType> = createStore<
+    ReducersType,
+    NecessityActionType | SettingActionType,
+    any,
+    any
+>(reducers);
 
 export default store;

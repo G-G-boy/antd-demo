@@ -18,3 +18,8 @@ html {
 .ant-layout {
     height: 100%;
 }
+
+//解决icon垂直不对称的问题
+svg {
+    vertical-align: unset;
+}

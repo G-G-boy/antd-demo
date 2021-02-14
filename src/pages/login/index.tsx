@@ -1,7 +1,6 @@
 import {FC} from 'react';
 import {Form, Button, Input} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
-import SelectLang from '@/components/select-lang';
 import {useIntl} from 'react-intl';
 import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
@@ -29,7 +28,6 @@ const Login: FC = () => {
 
     return (
         <div className="login-container">
-            <SelectLang />
             <Form className="login-content" name="basic" onFinish={onFinish}>
                 <div className="login-title">
                     <h2>{formatMessage({id: 'login'})}</h2>

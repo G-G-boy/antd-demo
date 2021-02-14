@@ -1,9 +1,12 @@
-import {Layout} from 'antd';
 import {FC} from 'react';
-const {Content} = Layout;
+import PageContainer from '@/components/page-container';
 
 const Dashboard: FC = () => {
-    return <Content></Content>;
+    return (
+        <PageContainer>
+            <div style={{height: '1000px'}}></div>
+        </PageContainer>
+    );
 };
 
 export default Dashboard;

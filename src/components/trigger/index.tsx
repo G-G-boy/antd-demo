@@ -1,23 +1,31 @@
-import {createElement, FC} from 'react';
-import {Button} from 'antd';
+import {createElement, FC, useEffect} from 'react';
 import {MenuFoldOutlined, MenuUnfoldOutlined} from '@ant-design/icons';
 import {useSelector, useDispatch} from 'react-redux';
 import {ReducersType} from '@/store';
-import {setCollapsed} from '@/store/setting/setting.action';
+import {setCollapsed, setMenuDrawerVisible} from '@/store/setting/setting.action';
+import {Grid} from 'antd';
+
+const {useBreakpoint} = Grid;
 
 const Trigger: FC = () => {
     const dispatch = useDispatch();
     const collapsed = useSelector<ReducersType>((state) => state.setting.collapsed);
-    return (
-        <Button
-            type="primary"
-            onClick={() => {
+    const {md, xs} = useBreakpoint();
+
+    useEffect(() => {
+        dispatch(setCollapsed(!md));
+    }, [md, dispatch]);
+
+    return createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+        className: 'text-lg h-full flex items-center ml-4',
+        onClick: () => {
+            if (xs) {
+                dispatch(setMenuDrawerVisible(true));
+            } else {
                 dispatch(setCollapsed(!collapsed));
-            }}
-        >
-            {createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined)}
-        </Button>
-    );
+            }
+        },
+    });
 };
 
 export default Trigger;

@@ -11,6 +11,10 @@ const settingReducer: Reducer<SettingState, SettingActionType> = (state, action)
             return {...state, collapsed: action.collapsed};
         case 'SET_FIX_HEADER':
             return {...state, fixHeader: action.fixHeader};
+        case 'SET_MENU_DRAWER_VISIBLE':
+            return {...state, menuDrawerVisible: action.menuDrawerVisible};
+        case 'SET_RIGHT_DRAWER_VISIBLE':
+            return {...state, rightDrawerVisible: action.rightDrawerVisible};
         default:
             return state;
     }

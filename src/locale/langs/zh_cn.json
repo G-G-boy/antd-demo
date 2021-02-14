@@ -4,5 +4,6 @@
   "login.username": "用户名",
   "login.input.username.please": "请输入账号",
   "login.password": "密码",
-  "login.input.password.please": "请输入密码"
+  "login.input.password.please": "请输入密码",
+  "dashboard": "仪表盘"
 }
