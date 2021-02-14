@@ -3,12 +3,28 @@ import {Form, Button, Input} from 'antd';
 import {UserOutlined, LockOutlined} from '@ant-design/icons';
 import SelectLang from '@/components/select-lang';
 import {useIntl} from 'react-intl';
+import {useHistory} from 'react-router-dom';
+import {useDispatch} from 'react-redux';
+import {setTokenAndRefreshToken} from '@/store/necessity/necessity.action';
+import {post} from '@/util/http';
 import './index.scss';
 
+interface LoginData {
+    token: string;
+    refreshToken: string;
+}
+
 const Login: FC = () => {
+    const history = useHistory();
+    const dispatch = useDispatch();
     const {formatMessage} = useIntl();
+
     const onFinish = (val: any) => {
-        console.log(val);
+        post<LoginData>('login', val).then((res) => {
+            const {token, refreshToken} = res.data.data;
+            dispatch(setTokenAndRefreshToken(token, refreshToken));
+            history.push('/');
+        });
     };
 
     return (
@@ -20,6 +36,7 @@ const Login: FC = () => {
                 </div>
                 <Form.Item
                     name="username"
+                    initialValue="admin"
                     rules={[
                         {
                             required: true,
@@ -34,6 +51,7 @@ const Login: FC = () => {
                 </Form.Item>
                 <Form.Item
                     name="password"
+                    initialValue="admin"
                     rules={[
                         {
                             required: true,
