@@ -1,4 +1,4 @@
-import {FC} from 'react';
+import {FC, CSSProperties} from 'react';
 import {Layout, Grid} from 'antd';
 import SelectLang from '@/components/select-lang';
 import Account from '@/components/account';
@@ -16,8 +16,8 @@ const LayoutHeader: FC = () => {
     const fixHeader = useSelector<ReducersType, boolean>((state) => state.setting.fixHeader);
     const collapsed = useSelector<ReducersType, boolean>((state) => state.setting.collapsed);
 
-    const computedStyle = () => {
-        let styles;
+    const computedStyle = (): CSSProperties => {
+        let styles: CSSProperties;
         if (fixHeader) {
             if (collapsed) {
                 styles = {
