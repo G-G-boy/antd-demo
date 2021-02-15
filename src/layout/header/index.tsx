@@ -23,6 +23,11 @@ const LayoutHeader: FC = () => {
                 styles = {
                     width: 'calc(100% - 80px)',
                 };
+                if (xs) {
+                    styles = {
+                        width: '100%',
+                    };
+                }
             } else {
                 styles = {
                     width: 'calc(100% - 200px)',
