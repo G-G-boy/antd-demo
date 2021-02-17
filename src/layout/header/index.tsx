@@ -4,6 +4,7 @@ import SelectLang from '@/components/select-lang';
 import Account from '@/components/account';
 import Trigger from '@/components/trigger';
 import Setting from '@/components/setting';
+import NoticeView from '@/components/notice';
 import {useSelector} from 'react-redux';
 import {ReducersType} from '@/store';
 import classNames from 'classnames';
@@ -45,6 +46,7 @@ const LayoutHeader: FC = () => {
         fixed: fixHeader,
         'top-0': fixHeader,
         'right-0': fixHeader,
+        'z-50': fixHeader,
     });
 
     return (
@@ -55,6 +57,7 @@ const LayoutHeader: FC = () => {
 
                 <div className="float-right h-full flex items-center">
                     <Setting />
+                    <NoticeView />
                     <Account />
                     <SelectLang />
                 </div>

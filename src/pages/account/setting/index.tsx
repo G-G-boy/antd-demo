@@ -38,6 +38,7 @@ const AccountSetting: FC = () => {
             <div className="flex flex-col sm:flex-row bg-white py-6">
                 <div className="w-full sm:w-52">
                     <Menu
+                        className="h-full"
                         mode={sm ? 'inline' : 'horizontal'}
                         selectedKeys={[selectedKey]}
                         onClick={({key}) => {
