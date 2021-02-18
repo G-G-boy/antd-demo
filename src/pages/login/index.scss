@@ -1,11 +1,11 @@
-.login-container {
+.login_container {
     @apply w-full h-full;
 
-    .login-content {
+    .login_content {
         @apply absolute left-1/2 top-1/2 w-80 shadow-2xl rounded p-8 pb-0;
         transform: translate(-50%, -60%);
 
-        .login-title {
+        .login_title {
             @apply 2xl:font-normal text-xl mb-1;
         }
     }

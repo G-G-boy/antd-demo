@@ -6,7 +6,7 @@ import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {setTokenAndRefreshToken} from '@/store/necessity/necessity.action';
 import {post} from '@/util/http';
-import './index.scss';
+import styles from './index.scss';
 
 interface LoginData {
     token: string;
@@ -27,9 +27,9 @@ const Login: FC = () => {
     };
 
     return (
-        <div className="login-container">
-            <Form className="login-content" name="basic" onFinish={onFinish}>
-                <div className="login-title">
+        <div className={styles.login_container}>
+            <Form className={styles.login_content} name="basic" onFinish={onFinish}>
+                <div className={styles.login_title}>
                     <h2>{formatMessage({id: 'login'})}</h2>
                 </div>
                 <Form.Item

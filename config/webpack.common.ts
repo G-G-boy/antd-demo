@@ -70,12 +70,41 @@ const commonConfig: Configuration = {
             },
             {
                 test: /\.scss$/,
+                include: resolve(__dirname, '../src/theme'),
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractLoader,
                     {
                         loader: 'css-loader',
                         options: {
                             modules: false,
+                            sourceMap: true,
+                            importLoaders: 2,
+                        },
+                    },
+                    {
+                        loader: 'postcss-loader',
+                        options: {sourceMap: true},
+                    },
+                    {
+                        loader: 'sass-loader',
+                        options: {
+                            sourceMap: true,
+                        },
+                    },
+                ],
+            },
+            {
+                test: /\.scss$/,
+                exclude: resolve(__dirname, '../src/theme'),
+                use: [
+                    isDev ? 'style-loader' : MiniCssExtractLoader,
+                    {
+                        loader: 'css-loader',
+                        options: {
+                            modules: {
+                                compileType: 'module',
+                                localIdentName: '[name]__[local]--[hash:base64:5]',
+                            },
                             sourceMap: true,
                             importLoaders: 2,
                         },

@@ -48,7 +48,7 @@ const LayoutMenu: FC = () => {
                 mode="inline"
                 theme="dark"
                 defaultOpenKeys={getDefaultOpenKeys(pathname)}
-                defaultSelectedKeys={[pathname]}
+                defaultSelectedKeys={[pathname === '/' ? '/dashboard' : pathname]}
             >
                 {menuListMap(routeConfig)}
             </Menu>

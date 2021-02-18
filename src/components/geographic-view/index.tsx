@@ -2,7 +2,7 @@ import {FC, useEffect, useState} from 'react';
 import {get} from '@/util/http';
 import {Select, Spin} from 'antd';
 import {LabeledValue} from 'antd/es/select';
-import './index.scss';
+import styles from './index.scss';
 
 export interface GeographicItemType {
     name: string;
@@ -61,9 +61,9 @@ const GeographicView: FC = () => {
     }, [province]);
 
     return (
-        <Spin spinning={loading} delay={300} wrapperClassName="geographic-row">
+        <Spin spinning={loading} delay={300} wrapperClassName={styles.geographic_row}>
             <Select
-                className="geographic-item"
+                className={styles.geographic_item}
                 value={province || nullSelectItem}
                 labelInValue
                 showSearch
@@ -73,7 +73,7 @@ const GeographicView: FC = () => {
             </Select>
 
             <Select
-                className="geographic-item"
+                className={styles.geographic_item}
                 value={city || nullSelectItem}
                 labelInValue
                 showSearch

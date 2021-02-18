@@ -1,8 +1,8 @@
-.geographic-row {
-    .geographic-item {
+.geographic_row {
+    .geographic_item {
         @apply w-1/2;
     }
-    .geographic-item:first-child {
+    .geographic_item:first-child {
         @apply mr-2 mb-2 sm:geographic-first-item;
     }
 }
