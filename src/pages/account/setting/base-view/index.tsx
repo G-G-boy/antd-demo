@@ -1,8 +1,32 @@
 import {FC} from 'react';
 import {Avatar, Upload, Form, Button, Input, Select} from 'antd';
 import {UploadOutlined} from '@ant-design/icons';
+import GeographicView from '@/components/geographic-view';
 
 const {Option} = Select;
+
+interface SelectItem {
+    label: string;
+    key: string;
+}
+
+const validatorGeographic = (
+    _: any,
+    value: {
+        province: SelectItem;
+        city: SelectItem;
+    },
+    callback: (message?: string) => void,
+) => {
+    const {province, city} = value;
+    if (!province.key) {
+        callback('请输入你的省份!');
+    }
+    if (!city.key) {
+        callback('请输入你的城市!');
+    }
+    callback();
+};
 
 const AvatarView = () => {
     return (
@@ -38,6 +62,16 @@ const BaseView: FC = () => {
                         profile: '',
                         country: '中国',
                         address: '广东',
+                        geographic: {
+                            province: {
+                                label: '',
+                                key: '',
+                            },
+                            city: {
+                                label: '',
+                                key: '',
+                            },
+                        },
                     }}
                     onFinish={onFinish}
                     hideRequiredMark
@@ -92,7 +126,21 @@ const BaseView: FC = () => {
                             <Option value="China">中国</Option>
                         </Select>
                     </Form.Item>
-
+                    <Form.Item
+                        name="geographic"
+                        label={'所在省市'}
+                        rules={[
+                            {
+                                required: true,
+                                message: '请选择所在省市',
+                            },
+                            {
+                                validator: validatorGeographic,
+                            },
+                        ]}
+                    >
+                        <GeographicView />
+                    </Form.Item>
                     <Form.Item
                         name="address"
                         label={'街道地址'}
@@ -105,12 +153,12 @@ const BaseView: FC = () => {
                     >
                         <Input />
                     </Form.Item>
+                    <Form.Item>
+                        <Button htmlType="submit" type="primary">
+                            更新基本信息
+                        </Button>
+                    </Form.Item>
                 </Form>
-                <Form.Item>
-                    <Button htmlType="submit" type="primary">
-                        更新基本信息
-                    </Button>
-                </Form.Item>
             </div>
         </>
     );

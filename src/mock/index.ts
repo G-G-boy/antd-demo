@@ -1,4 +1,7 @@
 import Mock from 'mockjs';
+import city from './geographic/city.json';
+import province from './geographic/province.json';
+import {parse} from 'qs';
 
 const tokens = {
     admin: 'admin-token',
@@ -33,5 +36,23 @@ Mock.mock(/userInfo/, 'get', () => {
         },
     };
 });
+
+Mock.mock(/province/, 'get', () => {
+    return {
+        code: 1,
+        data: province,
+    };
+});
+
+Mock.mock(/city/, 'get', ({url}) => {
+    const parseUrl = url.split('?')[1];
+    const id = parse(parseUrl).id as string;
+    return {
+        code: 1,
+        data: city[id],
+    };
+});
+
+Mock.setup({timeout: 200});
 
 export default Mock;

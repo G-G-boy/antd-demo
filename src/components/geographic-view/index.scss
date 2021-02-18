@@ -1,0 +1,17 @@
+.geographic-row {
+    .geographic-item {
+        @apply w-1/2;
+    }
+    .geographic-item:first-child {
+        @apply mr-2 mb-2 sm:geographic-first-item;
+    }
+}
+
+@layer components {
+    @responsive {
+        .geographic-first-item {
+            width: calc(50% - 8px);
+            margin-right: 8px;
+        }
+    }
+}

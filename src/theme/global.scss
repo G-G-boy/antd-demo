@@ -3,20 +3,19 @@
 @tailwind utilities;
 
 body {
-    height: 100%;
+    @apply h-full;
 }
 
 html {
-    height: 100%;
-    box-sizing: border-box;
+    @apply h-full box-border;
 }
 
 #root {
-    height: 100%;
+    @apply h-full;
 }
 
 .ant-layout {
-    height: 100%;
+    @apply h-full;
 }
 
 //解决icon垂直不对称的问题
