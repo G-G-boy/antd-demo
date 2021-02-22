@@ -1,5 +1,5 @@
 import {ComponentType, LazyExoticComponent, lazy} from 'react';
-import {HomeOutlined, UserOutlined, TableOutlined} from '@ant-design/icons';
+import {HomeOutlined, UserOutlined, TableOutlined, FormOutlined} from '@ant-design/icons';
 
 export type RouteConfig = Array<{
     icon?: ComponentType;
@@ -42,6 +42,18 @@ const routeConfig: RouteConfig = [
                 title: '基础列表',
                 path: '/list/basic',
                 component: lazy(() => import('@/pages/list/basic-list')),
+            },
+        ],
+    },
+    {
+        title: '表单页',
+        icon: FormOutlined,
+        path: '/form',
+        children: [
+            {
+                title: '基础表单',
+                path: '/form/basic',
+                component: lazy(() => import('@/pages/form/basic-form')),
             },
         ],
     },
