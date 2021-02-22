@@ -1,6 +1,7 @@
 import Mock from 'mockjs';
 import city from './geographic/city.json';
 import province from './geographic/province.json';
+import {getFakeList, postFakeList} from '@/pages/list/basic-list/mock';
 import {parse} from 'qs';
 
 const tokens = {
@@ -52,6 +53,9 @@ Mock.mock(/city/, 'get', ({url}) => {
         data: city[id],
     };
 });
+
+Mock.mock(/api\/fake_list/, 'get', getFakeList);
+Mock.mock(/api\/fake_list/, 'post', postFakeList);
 
 Mock.setup({timeout: 200});
 

@@ -1,3 +1,7 @@
+:root {
+    --color-primary: #1890ff;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -21,4 +25,8 @@ html {
 //解决icon垂直不对称的问题
 svg {
     vertical-align: unset;
+}
+
+a {
+    @apply text-primary no-underline outline-none;
 }
