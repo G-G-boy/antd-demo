@@ -3,9 +3,9 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import CompressionPlugin from 'compression-webpack-plugin';
-import commonConfig from './webpack.common';
+import {webpackConfig} from './webpack.dev';
 
-const prodConfig = merge(commonConfig, {
+const prodConfig = merge(webpackConfig, {
     mode: 'production',
     devtool: false,
     plugins: [

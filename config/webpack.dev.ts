@@ -14,4 +14,8 @@ const devConfig = merge<Webpack.Configuration>(commonConfig, {
     devtool: 'eval-cheap-module-source-map',
 });
 
+//Only god knows why
+const webpackConfig = commonConfig;
+
+export {webpackConfig};
 export default devConfig;
