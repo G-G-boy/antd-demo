@@ -5,7 +5,7 @@ import {get, post} from '@/util/http';
 import PageContainer from '@/components/page-container';
 import OperationModal from '@/pages/list/basic-list/operation-modal';
 import moment from 'moment';
-import styles from './index.scss';
+import styles from './index.module.less';
 
 interface Member {
     avatar: string;

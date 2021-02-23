@@ -19,7 +19,7 @@ module.exports = function (api) {
             'import',
             {
                 libraryName: 'antd',
-                style: 'css',
+                style: true,
             },
         ],
         !api.env('production') && 'react-refresh/babel',

@@ -69,8 +69,8 @@ const commonConfig: Configuration = {
                 ],
             },
             {
-                test: /\.scss$/,
-                include: resolve(__dirname, '../src/theme'),
+                test: /\.less$/,
+                exclude: /\.module\.less$/,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractLoader,
                     {
@@ -83,19 +83,23 @@ const commonConfig: Configuration = {
                     },
                     {
                         loader: 'postcss-loader',
-                        options: {sourceMap: true},
-                    },
-                    {
-                        loader: 'sass-loader',
                         options: {
                             sourceMap: true,
+                        },
+                    },
+                    {
+                        loader: 'less-loader',
+                        options: {
+                            sourceMap: true,
+                            lessOptions: {
+                                javascriptEnabled: true,
+                            },
                         },
                     },
                 ],
             },
             {
-                test: /\.scss$/,
-                exclude: resolve(__dirname, '../src/theme'),
+                test: /\.module\.less$/,
                 use: [
                     isDev ? 'style-loader' : MiniCssExtractLoader,
                     {
@@ -111,10 +115,12 @@ const commonConfig: Configuration = {
                     },
                     {
                         loader: 'postcss-loader',
-                        options: {sourceMap: true},
+                        options: {
+                            sourceMap: true,
+                        },
                     },
                     {
-                        loader: 'sass-loader',
+                        loader: 'less-loader',
                         options: {
                             sourceMap: true,
                         },

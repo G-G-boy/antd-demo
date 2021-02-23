@@ -6,7 +6,7 @@ import {useHistory} from 'react-router-dom';
 import {useDispatch} from 'react-redux';
 import {setTokenAndRefreshToken} from '@/store/necessity/necessity.action';
 import {post} from '@/util/http';
-import styles from './index.scss';
+import styles from './index.module.less';
 
 interface LoginData {
     token: string;

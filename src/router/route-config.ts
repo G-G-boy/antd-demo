@@ -43,6 +43,11 @@ const routeConfig: RouteConfig = [
                 path: '/list/basic',
                 component: lazy(() => import('@/pages/list/basic-list')),
             },
+            {
+                title: '高级表格',
+                path: '/list/pro-table',
+                component: lazy(() => import('@/pages/list/advanced-table')),
+            },
         ],
     },
     {

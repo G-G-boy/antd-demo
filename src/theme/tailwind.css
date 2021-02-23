@@ -6,23 +6,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    @apply h-full;
-}
-
-html {
-    @apply h-full box-border;
-}
-
-#root {
-    @apply h-full;
-}
-
-.ant-layout {
-    @apply h-full;
-}
-
-//解决icon垂直不对称的问题
+/*解决icon垂直不对称的问题*/
 svg {
     vertical-align: unset;
 }

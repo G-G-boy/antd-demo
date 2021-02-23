@@ -2,7 +2,7 @@ import {FC, useEffect, useState} from 'react';
 import {get} from '@/util/http';
 import {Select, Spin} from 'antd';
 import {LabeledValue} from 'antd/es/select';
-import styles from './index.scss';
+import styles from './index.module.less';
 
 export interface GeographicItemType {
     name: string;
