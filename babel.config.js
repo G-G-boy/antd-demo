@@ -14,7 +14,12 @@ module.exports = function (api) {
         ['@babel/preset-react', {runtime: 'automatic'}],
     ];
     const plugins = [
-        '@babel/plugin-transform-runtime',
+        [
+            '@babel/plugin-transform-runtime',
+            {
+                corejs: 3,
+            },
+        ],
         [
             'import',
             {

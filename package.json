@@ -14,6 +14,8 @@
   "dependencies": {
     "@ant-design/icons": "^4.5.0",
     "@ant-design/pro-table": "^2.30.0",
+    "@babel/runtime": "7.12.18",
+    "@babel/runtime-corejs3": "^7.13.3",
     "antd": "^4.12.3",
     "axios": "^0.21.1",
     "classnames": "^2.2.6",
@@ -137,6 +139,6 @@
   },
   "sideEffects": [
     "*.css",
-    "*.scss"
+    "*.less"
   ]
 }

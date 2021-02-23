@@ -1,6 +1,6 @@
 module.exports = {
     root: true,
-    extends: ['react-app', 'prettier', 'prettier/react'],
+    extends: ['react-app', 'prettier'],
     rules: {
         'no-redeclare': 'off',
         '@typescript-eslint/no-redeclare': 'off',
