@@ -5,6 +5,7 @@ import Account from '@/components/account';
 import Trigger from '@/components/trigger';
 import Setting from '@/components/setting';
 import NoticeView from '@/components/notice';
+import ThemeSelect from '@/components/theme';
 import {useSelector} from 'react-redux';
 import {ReducersType} from '@/store';
 import classNames from 'classnames';
@@ -42,20 +43,18 @@ const LayoutHeader: FC = () => {
         return styles;
     };
 
-    const fixedClass = classNames({
-        fixed: fixHeader,
-        'top-0': fixHeader,
-        'right-0': fixHeader,
-        'z-50': fixHeader,
+    const headerClass = classNames({
+        'fixed top-0 right-0 z-50': fixHeader,
     });
 
     return (
         <>
             {fixHeader ? <Header /> : null}
-            <Header style={computedStyle()} className={`bg-white px-4 ${fixedClass}`}>
+            <Header style={computedStyle()} className={`bg-white px-4 ${headerClass}`}>
                 <div className="float-left h-full flex items-center">{xs && <Trigger />}</div>
 
                 <div className="float-right h-full flex items-center">
+                    <ThemeSelect />
                     <Setting />
                     <NoticeView />
                     <Account />

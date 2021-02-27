@@ -1,3 +1,5 @@
+import {MenuTheme} from 'antd';
+
 export const setCollapsed = (collapsed: boolean) =>
     <const>{
         type: 'SET_COLLAPSED',
@@ -22,8 +24,15 @@ export const setRightDrawerVisible = (rightDrawerVisible: boolean) =>
         rightDrawerVisible,
     };
 
+export const setSiderTheme = (siderTheme: MenuTheme) =>
+    <const>{
+        type: 'SET_SIDER_THEME',
+        siderTheme,
+    };
+
 export type SettingActionType =
     | ReturnType<typeof setCollapsed>
     | ReturnType<typeof setFixHeader>
     | ReturnType<typeof setMenuDrawerVisible>
-    | ReturnType<typeof setRightDrawerVisible>;
+    | ReturnType<typeof setRightDrawerVisible>
+    | ReturnType<typeof setSiderTheme>;

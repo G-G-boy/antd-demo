@@ -9,8 +9,20 @@ import CopyPlugin from 'copy-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import {loader as MiniCssExtractLoader} from 'mini-css-extract-plugin';
 import {HMR_PATH} from '../scripts/middlewares/webpack-middleware';
+import defaultSettings from '../defaultSettings';
+const AntDesignThemePlugin = require('antd-theme-webpack-plugin');
+
+const resolveDirname = (path: string) => resolve(__dirname, path);
+
+const distDir = resolveDirname('../dist');
 
 const isDev = process.env.NODE_ENV !== 'production';
+
+const styleLoderOrMiniCss = isDev ? 'style-loader' : MiniCssExtractLoader;
+const postCssLoader = {
+    loader: 'postcss-loader',
+    options: {sourceMap: true},
+};
 
 const htmlMinifyOptions: HtmlMinifierOptions = {
     collapseWhitespace: true,
@@ -28,19 +40,19 @@ const htmlMinifyOptions: HtmlMinifierOptions = {
 
 const commonConfig: Configuration = {
     cache: true,
-    context: resolve(__dirname, '../'),
-    entry: [resolve(__dirname, '../src/index.tsx')],
+    context: resolveDirname('../'),
+    entry: [resolveDirname('../src/index.tsx')],
     output: {
         publicPath: '/',
-        path: resolve(__dirname, '../dist'),
+        path: distDir,
         filename: 'js/[name]-[hash].bundle.js',
-        hashSalt: 'react-ts-template',
+        hashSalt: defaultSettings.title,
         assetModuleFilename: 'assets/[hash][ext][query]',
     },
     resolve: {
-        extensions: ['.ts', '.tsx', '.js', '.json', '.scss'],
+        extensions: ['.ts', '.tsx', '.js', '.json', '.less'],
         alias: {
-            '@': resolve(__dirname, '../src'),
+            '@': resolveDirname('../src'),
         },
     },
     module: {
@@ -53,7 +65,7 @@ const commonConfig: Configuration = {
             {
                 test: /\.css$/,
                 use: [
-                    isDev ? 'style-loader' : MiniCssExtractLoader,
+                    styleLoderOrMiniCss,
                     {
                         loader: 'css-loader',
                         options: {
@@ -62,17 +74,14 @@ const commonConfig: Configuration = {
                             importLoaders: 1,
                         },
                     },
-                    {
-                        loader: 'postcss-loader',
-                        options: {sourceMap: true},
-                    },
+                    postCssLoader,
                 ],
             },
             {
                 test: /\.less$/,
                 exclude: /\.module\.less$/,
                 use: [
-                    isDev ? 'style-loader' : MiniCssExtractLoader,
+                    styleLoderOrMiniCss,
                     {
                         loader: 'css-loader',
                         options: {
@@ -81,17 +90,15 @@ const commonConfig: Configuration = {
                             importLoaders: 2,
                         },
                     },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
+                    postCssLoader,
                     {
                         loader: 'less-loader',
                         options: {
                             sourceMap: true,
                             lessOptions: {
+                                modifyVars: {
+                                    '@primary-color': defaultSettings.primaryColor,
+                                },
                                 javascriptEnabled: true,
                             },
                         },
@@ -101,7 +108,7 @@ const commonConfig: Configuration = {
             {
                 test: /\.module\.less$/,
                 use: [
-                    isDev ? 'style-loader' : MiniCssExtractLoader,
+                    styleLoderOrMiniCss,
                     {
                         loader: 'css-loader',
                         options: {
@@ -113,16 +120,14 @@ const commonConfig: Configuration = {
                             importLoaders: 2,
                         },
                     },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            sourceMap: true,
-                        },
-                    },
+                    postCssLoader,
                     {
                         loader: 'less-loader',
                         options: {
                             sourceMap: true,
+                            lessOptions: {
+                                javascriptEnabled: true,
+                            },
                         },
                     },
                 ],
@@ -154,14 +159,25 @@ const commonConfig: Configuration = {
     },
     plugins: [
         new WebpackBarPlugin({
-            name: 'react-ts-template',
-            color: '#61dafb', //react color
+            name: defaultSettings.title,
+            color: defaultSettings.primaryColor,
+        }),
+        new AntDesignThemePlugin({
+            antDir: resolveDirname('../node_modules/antd'),
+            stylesDir: resolveDirname('../src'),
+            varFile: resolveDirname('../src/theme/variables.module.less'),
+            themeVariables: ['@primary-color'],
+            indexFileName: 'index.html',
+            generateOnce: false,
+            lessUrl: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js',
+            publicPath: '',
+            customColorRegexArray: [],
         }),
         new FriendlyErrorsPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             minify: isDev ? false : htmlMinifyOptions,
-            template: resolve(__dirname, '../public/index.html'),
+            template: resolveDirname('../public/index.html'),
             templateParameters: (...args: any[]) => {
                 const [compilation, assets, assetTags, options] = args;
                 const rawPublicPath = commonConfig.output!.publicPath! as string;
@@ -176,15 +192,16 @@ const commonConfig: Configuration = {
                     PUBLIC_PATH: rawPublicPath.endsWith('/')
                         ? rawPublicPath.slice(0, -1)
                         : rawPublicPath,
+                    title: defaultSettings.title,
                 };
             },
         }),
         new CopyPlugin({
             patterns: [
                 {
-                    context: resolve(__dirname, '../public'),
+                    context: resolveDirname('../public'),
                     from: '*',
-                    to: resolve(__dirname, '../dist'),
+                    to: distDir,
                     toType: 'dir',
                     filter: (resourcePath) => {
                         return !resourcePath.includes('index.html');
@@ -195,7 +212,7 @@ const commonConfig: Configuration = {
         new ForkTsCheckerWebpackPlugin({
             typescript: {
                 memoryLimit: isDev ? 1024 : 2048,
-                configFile: resolve(__dirname, '../tsconfig.json'),
+                configFile: resolveDirname('../tsconfig.json'),
             },
         }),
     ],

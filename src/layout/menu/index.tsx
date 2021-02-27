@@ -1,8 +1,10 @@
 import {FC} from 'react';
-import {Menu} from 'antd';
+import {Menu, MenuTheme} from 'antd';
 import {Link, useLocation} from 'react-router-dom';
 import routeConfig, {RouteConfig} from '@/router/route-config';
 import Logo from '@/components/logo';
+import {ReducersType} from '@/store';
+import {useSelector} from 'react-redux';
 
 const {SubMenu} = Menu;
 
@@ -40,13 +42,14 @@ const getDefaultOpenKeys = (pathname: string): string[] => {
 
 const LayoutMenu: FC = () => {
     const {pathname} = useLocation();
+    const siderTheme = useSelector<ReducersType, MenuTheme>((state) => state.setting.siderTheme);
 
     return (
         <>
             <Logo />
             <Menu
                 mode="inline"
-                theme="dark"
+                theme={siderTheme}
                 defaultOpenKeys={getDefaultOpenKeys(pathname)}
                 defaultSelectedKeys={[pathname === '/' ? '/dashboard' : pathname]}
                 selectedKeys={getDefaultOpenKeys(pathname)}

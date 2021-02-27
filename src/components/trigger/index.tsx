@@ -16,15 +16,17 @@ const Trigger: FC = () => {
         dispatch(setCollapsed(!md));
     }, [md, dispatch]);
 
+    const handleClick = () => {
+        if (xs) {
+            dispatch(setMenuDrawerVisible(true));
+        } else {
+            dispatch(setCollapsed(!collapsed));
+        }
+    };
+
     return createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
         className: 'text-lg h-full flex items-center ml-4',
-        onClick: () => {
-            if (xs) {
-                dispatch(setMenuDrawerVisible(true));
-            } else {
-                dispatch(setCollapsed(!collapsed));
-            }
-        },
+        onClick: handleClick,
     });
 };
 

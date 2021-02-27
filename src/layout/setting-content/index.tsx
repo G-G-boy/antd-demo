@@ -1,6 +1,6 @@
 import {FC} from 'react';
-import {Drawer, Switch, Row, Col} from 'antd';
-import {setRightDrawerVisible, setFixHeader} from '@/store/setting/setting.action';
+import {Drawer, Switch, Row, Col, MenuTheme} from 'antd';
+import {setRightDrawerVisible, setFixHeader, setSiderTheme} from '@/store/setting/setting.action';
 import {useDispatch, useSelector} from 'react-redux';
 import {ReducersType} from '@/store';
 
@@ -10,6 +10,7 @@ const SettingContent: FC = () => {
         (state) => state.setting.rightDrawerVisible,
     );
     const fixHeader = useSelector<ReducersType, boolean>((state) => state.setting.fixHeader);
+    const siderTheme = useSelector<ReducersType, MenuTheme>((state) => state.setting.siderTheme);
 
     return (
         <Drawer
@@ -18,6 +19,17 @@ const SettingContent: FC = () => {
             onClose={() => dispatch(setRightDrawerVisible(false))}
             visible={rightDrawerVisible}
         >
+            <Row justify="space-around">
+                <Col>siderTheme</Col>
+                <Col>
+                    <Switch
+                        checkedChildren={siderTheme}
+                        unCheckedChildren={siderTheme}
+                        checked={siderTheme === 'dark'}
+                        onChange={(checked) => dispatch(setSiderTheme(checked ? 'dark' : 'light'))}
+                    />
+                </Col>
+            </Row>
             <Row justify="space-around">
                 <Col>固定Header</Col>
                 <Col>

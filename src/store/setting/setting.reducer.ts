@@ -15,6 +15,8 @@ const settingReducer: Reducer<SettingState, SettingActionType> = (state, action)
             return {...state, menuDrawerVisible: action.menuDrawerVisible};
         case 'SET_RIGHT_DRAWER_VISIBLE':
             return {...state, rightDrawerVisible: action.rightDrawerVisible};
+        case 'SET_SIDER_THEME':
+            return {...state, siderTheme: action.siderTheme};
         default:
             return state;
     }

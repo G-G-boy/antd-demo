@@ -1,5 +1,5 @@
 import {FC} from 'react';
-import {Grid, Layout, Drawer} from 'antd';
+import {Grid, Layout, Drawer, MenuTheme} from 'antd';
 import Header from '@/layout/header';
 import Menu from '@/layout/menu';
 import Content from '@/layout/content';
@@ -8,6 +8,7 @@ import Trigger from '@/components/trigger';
 import {useSelector, useDispatch} from 'react-redux';
 import {setMenuDrawerVisible} from '@/store/setting/setting.action';
 import {ReducersType} from '@/store';
+import classNames from 'classnames';
 
 const {Sider} = Layout;
 const {useBreakpoint} = Grid;
@@ -19,6 +20,11 @@ const LayoutMain: FC = () => {
     );
     const {xs} = useBreakpoint();
     const dispatch = useDispatch();
+    const siderTheme = useSelector<ReducersType, MenuTheme>((state) => state.setting.siderTheme);
+
+    const siderClass = classNames({
+        'bg-white': siderTheme === 'light',
+    });
 
     return (
         <Layout className="h-screen">
@@ -28,13 +34,21 @@ const LayoutMain: FC = () => {
                     closable={false}
                     onClose={() => dispatch(setMenuDrawerVisible(false))}
                     visible={menuDrawerVisible}
-                    bodyStyle={{padding: 0, backgroundColor: '#001529'}}
+                    bodyStyle={{
+                        padding: 0,
+                        backgroundColor: siderTheme === 'dark' ? '#001529' : '#fff',
+                    }}
                     width={200}
                 >
                     <Menu />
                 </Drawer>
             ) : (
-                <Sider collapsible collapsed={collapsed} trigger={<Trigger />}>
+                <Sider
+                    className={`shadow-sm ${siderClass}`}
+                    collapsible
+                    collapsed={collapsed}
+                    trigger={<Trigger />}
+                >
                     <Menu />
                 </Sider>
             )}

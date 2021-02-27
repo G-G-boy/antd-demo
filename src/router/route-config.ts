@@ -48,6 +48,11 @@ const routeConfig: RouteConfig = [
                 path: '/list/pro-table',
                 component: lazy(() => import('@/pages/list/advanced-table')),
             },
+            {
+                title: '无限列表',
+                path: '/list/infinite',
+                component: lazy(() => import('@/pages/list/infinite-list')),
+            },
         ],
     },
     {
