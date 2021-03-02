@@ -13,6 +13,7 @@ const http = axios.create({});
 
 http.interceptors.request.use(
     (config) => {
+        console.log(`TokenInterceptor.intercept...[${config.baseURL}${config.url}]`);
         return config;
     },
     (error) => {

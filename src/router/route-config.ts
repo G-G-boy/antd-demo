@@ -49,9 +49,9 @@ const routeConfig: RouteConfig = [
                 component: lazy(() => import('@/pages/list/advanced-table')),
             },
             {
-                title: '无限列表',
-                path: '/list/infinite',
-                component: lazy(() => import('@/pages/list/infinite-list')),
+                title: 'swr',
+                path: '/list/swr',
+                component: lazy(() => import('@/pages/list/basic-table')),
             },
         ],
     },
