@@ -1,41 +1,11 @@
 import {FC, useEffect, useState} from 'react';
 import {Card, Radio, Input, Button, List, Avatar, Dropdown, Menu, Modal, Progress} from 'antd';
 import {PlusOutlined, DownOutlined} from '@ant-design/icons';
-import {get, post} from '@/util/http';
 import PageContainer from '@/components/page-container';
 import OperationModal from '@/pages/list/basic-list/operation-modal';
 import moment from 'moment';
+import {getFakeList, postFakeList, BasicListItemDataType} from '@/pages/list/list-services';
 import styles from './index.module.less';
-
-interface Member {
-    avatar: string;
-    name: string;
-    id: string;
-}
-
-export interface BasicListItemDataType {
-    id: string;
-    owner: string;
-    title: string;
-    avatar: string;
-    cover: string;
-    status: 'normal' | 'exception' | 'active' | 'success';
-    percent: number;
-    logo: string;
-    href: string;
-    body?: any;
-    updatedAt: number;
-    createdAt: number;
-    subDescription: string;
-    description: string;
-    activeUser: number;
-    newUser: number;
-    star: number;
-    like: number;
-    message: number;
-    content: string;
-    members: Member[];
-}
 
 const extraContent = (
     <div>
@@ -78,10 +48,8 @@ const BasicList: FC = () => {
 
     useEffect(() => {
         setLoading(true);
-        get<Array<BasicListItemDataType>>('api/fake_list', {
-            count: 5,
-        }).then((res) => {
-            setList(res.data.data);
+        getFakeList({count: 5}).then((data) => {
+            setList(data);
             setLoading(false);
         });
     }, []);
@@ -113,11 +81,11 @@ const BasicList: FC = () => {
                                 cancelText: '取消',
                                 onOk: () => {
                                     setLoading(true);
-                                    post<Array<BasicListItemDataType>>('api/fake_list', {
+                                    postFakeList({
                                         id: item.id,
                                         method: 'delete',
-                                    }).then((res) => {
-                                        setList(res.data.data);
+                                    }).then((data) => {
+                                        setList(data);
                                         setLoading(false);
                                     });
                                 },
@@ -152,21 +120,22 @@ const BasicList: FC = () => {
         setLoading(true);
 
         if (!id) {
-            post<Array<BasicListItemDataType>>('api/fake_list', {
+            postFakeList({
                 method: 'post',
                 item: values,
-            }).then((res) => {
-                setList(res.data.data);
+            }).then((data) => {
+                setList(data);
                 setLoading(false);
             });
+            return;
         }
 
-        post<Array<BasicListItemDataType>>('api/fake_list', {
+        postFakeList({
             id: id,
             method: 'update',
             item: values,
-        }).then((res) => {
-            setList(res.data.data);
+        }).then((data) => {
+            setList(data);
             setLoading(false);
         });
     };

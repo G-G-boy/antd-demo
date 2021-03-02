@@ -1,5 +1,5 @@
 import {parse} from 'qs';
-import {BasicListItemDataType} from './index';
+import {BasicListItemDataType} from '../list-services';
 
 const titles = [
     'Alipay',

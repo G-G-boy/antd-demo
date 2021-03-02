@@ -13,7 +13,7 @@ const defaultSettings: defaultSettings = {
     dark: false,
     primaryColor: '#61dafb',
     fixedHeader: false,
-    siderTheme: 'light',
+    siderTheme: 'dark',
 };
 
 export default defaultSettings;
