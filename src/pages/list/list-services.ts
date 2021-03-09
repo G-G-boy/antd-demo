@@ -31,20 +31,14 @@ export interface BasicListItemDataType {
 }
 
 interface ListParams {
-    count: 5;
+    count: number;
 }
 
-interface GetFakeListType {
-    (params: ListParams): Promise<BasicListItemDataType[]>;
-    mark: 'getFakeList';
-}
-
-export const getFakeList: GetFakeListType = (params) => {
+export const getFakeList: (params: ListParams) => Promise<BasicListItemDataType[]> = (params) => {
     return get<Array<BasicListItemDataType>, ListParams>('api/fake_list', params).then(
         (res) => res.data.data,
     );
 };
-getFakeList.mark = 'getFakeList';
 
 interface PostData {
     id?: string;
@@ -52,14 +46,8 @@ interface PostData {
     method: 'post' | 'update' | 'delete';
 }
 
-interface PostFakeList {
-    (data: PostData): Promise<BasicListItemDataType[]>;
-    mark: 'postFakeList';
-}
-
-export const postFakeList: PostFakeList = (data) => {
+export const postFakeList: (data: PostData) => Promise<BasicListItemDataType[]> = (data) => {
     return post<Array<BasicListItemDataType>, PostData>('api/fake_list', data).then(
         (res) => res.data.data,
     );
 };
-postFakeList.mark = 'postFakeList';

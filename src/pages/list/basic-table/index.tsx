@@ -6,7 +6,7 @@ import {Table, Space, Card} from 'antd';
 import {FormattedDate} from 'react-intl';
 
 const BasicTable: FC = () => {
-    const {data, isValidating, mutate} = useSWR(getFakeList.mark, getFakeList);
+    const {data, isValidating, mutate} = useSWR(getFakeList.name, () => getFakeList({count: 5}));
 
     return (
         <PageContainer hasBg={false}>
