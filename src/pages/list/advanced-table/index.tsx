@@ -25,6 +25,7 @@ import type {ProColumns, ActionType, ColumnsState} from '@ant-design/pro-table';
 import ProTable from '@ant-design/pro-table';
 import PageContainer from '@/components/page-container';
 import {useHistory, useRouteMatch} from 'react-router-dom';
+import * as Sentry from '@sentry/react';
 
 const {DirectoryTree} = Tree;
 const {useBreakpoint} = Grid;
@@ -312,10 +313,11 @@ const Test3 = () => {
                         key="button"
                         type="primary"
                         onClick={() => {
-                            history.push(`${url}/test5`);
+                            throw new Error('aaaaaaa');
+                            // Sentry.captureException(new Error('mock error'));
                         }}
                     >
-                        添加
+                        mock error
                     </Button>,
                 ]}
                 actionRef={actionRef}

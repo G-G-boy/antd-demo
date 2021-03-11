@@ -5,6 +5,7 @@ import {NecessityState} from '@/store/necessity/necessity.state';
 import {SettingState} from '@/store/setting/setting.state';
 import {SettingActionType} from '@/store/setting/setting.action';
 import settingReducer from '@/store/setting/setting.reducer';
+import {createReduxEnhancer} from '@sentry/react';
 
 export type ReducersType = {
     necessity: NecessityState;
@@ -16,11 +17,13 @@ const reducers = combineReducers<ReducersType>({
     setting: settingReducer,
 });
 
+const sentryReduxEnhancer = createReduxEnhancer();
+
 const store: Store<ReducersType, NecessityActionType | SettingActionType> = createStore<
     ReducersType,
     NecessityActionType | SettingActionType,
     any,
     any
->(reducers);
+>(reducers, sentryReduxEnhancer);
 
 export default store;

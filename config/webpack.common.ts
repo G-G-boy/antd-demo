@@ -46,6 +46,7 @@ const commonConfig: Configuration = {
         publicPath: '/',
         path: distDir,
         filename: 'js/[name]-[hash].bundle.js',
+        sourceMapFilename: 'map/[name]-[hash].bundle.js.map',
         hashSalt: defaultSettings.title,
         assetModuleFilename: 'assets/[hash][ext][query]',
     },

@@ -5,6 +5,7 @@ import Router from '@/router';
 import AppIntlProvider from '@/locale';
 import ErrorBoundary from '@/components/error-boundary';
 import {SWRConfig, ConfigInterface} from 'swr';
+import {withProfiler} from '@sentry/react';
 
 const swrConfig: ConfigInterface<any, any, (...args: any) => any | Promise<any>> = {
     revalidateOnFocus: false,
@@ -31,4 +32,4 @@ const App: FC = () => (
     </Providers>
 );
 
-export default App;
+export default withProfiler(App, {name: 'AntdTailwindSentryDemo'});

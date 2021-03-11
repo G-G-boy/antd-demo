@@ -1,26 +1,10 @@
-import {Component} from 'react';
+import {FC} from 'react';
+import * as Sentry from '@sentry/react';
 
-class ErrorBoundary extends Component<any, {hasError: boolean}> {
-    constructor(props) {
-        super(props);
-        this.state = {hasError: false};
-    }
-
-    static getDerivedStateFromError(error) {
-        console.log(error);
-        return {hasError: true};
-    }
-
-    componentDidCatch(error, errorInfo) {
-        console.log(error, errorInfo);
-    }
-
-    render() {
-        if (this.state.hasError) {
-            return <div>error</div>;
-        }
-        return this.props.children;
-    }
-}
+const ErrorBoundary: FC = ({children}) => {
+    return (
+        <Sentry.ErrorBoundary fallback={'An error has occurred'}>{children}</Sentry.ErrorBoundary>
+    );
+};
 
 export default ErrorBoundary;
