@@ -1,3 +1,3 @@
 ##react-ts-template
 
-sentry-cli releases files antd-demo-'package.version' upload-sourcemaps --url-prefix '~/map' './dist/map'
+sentry-cli releases files sentryTest3 upload-sourcemaps --url-prefix '~/js' './dist/js'

@@ -7,12 +7,11 @@ import {Integrations} from '@sentry/tracing';
 import history from '@/router/history';
 import '@/theme/global.less';
 import '@/theme/tailwind.css';
-import pkg from '../package.json';
 console.log('mockjs version:', Mock.version);
 
 Sentry.init({
-    dsn: 'http://3d27e863542c47f48b62ccf27afee1aa@localhost:9000/2',
-    release: `antd-demo-${pkg.version}`,
+    dsn: 'http://91fb3bd101fa41cbbfa390ef28f12a0e@localhost:9000/3',
+    release: `sentryTest3`,
     integrations: [
         new Integrations.BrowserTracing({
             routingInstrumentation: Sentry.reactRouterV5Instrumentation(history),

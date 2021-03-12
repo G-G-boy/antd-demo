@@ -313,8 +313,7 @@ const Test3 = () => {
                         key="button"
                         type="primary"
                         onClick={() => {
-                            throw new Error('aaaaaaa');
-                            // Sentry.captureException(new Error('mock error'));
+                            Sentry.captureException(new Error('xxxxxxx'));
                         }}
                     >
                         mock error

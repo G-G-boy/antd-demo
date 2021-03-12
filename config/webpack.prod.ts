@@ -9,7 +9,7 @@ import {webpackConfig} from './webpack.dev';
 
 const prodConfig = merge(webpackConfig, {
     mode: 'production',
-    devtool: 'cheap-module-source-map',
+    devtool: 'hidden-source-map',
     plugins: [
         new MiniCssExtractPlugin({
             filename: 'css/[name].[contenthash].css',
