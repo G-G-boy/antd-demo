@@ -7,7 +7,7 @@ import WebpackOpenBrowser from 'webpack-open-browser';
 import devConfig from '../config/webpack.dev';
 import setupMiddlewares from './middlewares';
 
-const HOST = '127.0.0.1';
+const HOST = '0.0.0.0';
 const DEFAULT_PORT = 5000;
 
 function start() {
