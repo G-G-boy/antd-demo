@@ -10,15 +10,15 @@ import '@/theme/tailwind.css';
 import pkg from '../package.json';
 console.log('mockjs version:', Mock.version);
 
-Sentry.init({
-    dsn: 'http://91fb3bd101fa41cbbfa390ef28f12a0e@localhost:9000/3',
-    release: `sentry-${pkg.version}`,
-    integrations: [
-        new Integrations.BrowserTracing({
-            routingInstrumentation: Sentry.reactRouterV5Instrumentation(history),
-        }),
-    ],
-    tracesSampleRate: 1.0,
-});
+// Sentry.init({
+//     dsn: 'http://91fb3bd101fa41cbbfa390ef28f12a0e@localhost:9000/3',
+//     release: `sentry-${pkg.version}`,
+//     integrations: [
+//         new Integrations.BrowserTracing({
+//             routingInstrumentation: Sentry.reactRouterV5Instrumentation(history),
+//         }),
+//     ],
+//     tracesSampleRate: 1.0,
+// });
 
 ReactDOM.render(<App />, document.querySelector('#root'));

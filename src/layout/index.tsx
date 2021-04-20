@@ -13,7 +13,7 @@ import classNames from 'classnames';
 const {Sider} = Layout;
 const {useBreakpoint} = Grid;
 
-const LayoutMain: FC = () => {
+const LayoutMain: FC = ({children}) => {
     const collapsed = useSelector<ReducersType, boolean>((state) => state.setting.collapsed);
     const menuDrawerVisible = useSelector<ReducersType, boolean>(
         (state) => state.setting.menuDrawerVisible,
@@ -47,18 +47,24 @@ const LayoutMain: FC = () => {
                     className={`shadow-sm ${siderClass}`}
                     collapsible
                     collapsed={collapsed}
+                    theme={siderTheme}
                     trigger={<Trigger />}
                 >
                     <Menu />
                 </Sider>
             )}
-            <Layout className="overflow-x-hidden">
-                <Header />
-                <Content />
-            </Layout>
+            <Layout className="overflow-x-hidden">{children}</Layout>
             <SettingContent />
         </Layout>
     );
 };
 
-export default LayoutMain;
+// eslint-disable-next-line import/no-anonymous-default-export
+export default () => {
+    return (
+        <LayoutMain>
+            <Header />
+            <Content />
+        </LayoutMain>
+    );
+};
