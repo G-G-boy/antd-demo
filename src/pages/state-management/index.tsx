@@ -1,65 +1,111 @@
-import {FC, createContext, useState, useContext, useRef, useEffect, MutableRefObject} from 'react';
+import {
+    createContext,
+    FC,
+    useContext,
+    useEffect,
+    useMemo,
+    useReducer,
+    useRef,
+    useState,
+    MutableRefObject,
+} from 'react';
 import PageContainer from '@/components/page-container';
 import {Button} from 'antd';
+import {isEqual} from 'lodash';
+import {Subject} from 'rxjs';
+import {map, filter} from 'rxjs/operators';
+import {useUpdateEffect} from 'ahooks';
 
 type StateType = {count: number; str: string};
-const defaultState: StateType = {count: 0, str: ''};
-const StateContext = createContext<MutableRefObject<StateType>>({current: defaultState});
+const defaultState: StateType = {count: 0, str: '666'};
 
-const SetStateContext = createContext<(...args: any[]) => any>(() => undefined);
+const StoreContext = createContext<MutableRefObject<StateType>>({current: defaultState});
 
-const useStore = () => {
-    const state = useContext(StateContext);
-    return state.current;
+const StoreSubscriptionContext = createContext<Subject<StateType>>(new Subject<StateType>());
+
+const DispatchContext = createContext<(...args: any[]) => any>(() => undefined);
+
+const useStore = () => useContext(StoreContext);
+
+const useStore$ = () => useContext(StoreSubscriptionContext);
+
+const useDispatch = () => useContext(DispatchContext);
+
+const useSelector: <T = any, E = T>(
+    selector: (state: StateType) => T,
+    compare?: (value: T, other: E) => boolean,
+) => T = (selector, compare = isEqual) => {
+    const [, forceRender] = useReducer((s) => s + 1, 0);
+    const store = useStore();
+    const state$ = useStore$();
+    const selectedState = useRef<any>(selector(store.current));
+
+    useEffect(() => {
+        const subscription = state$
+            .pipe(
+                map((state) => selector(state)),
+                filter((latestStoreState) => !compare(latestStoreState, selectedState.current)),
+            )
+            .subscribe((state) => {
+                selectedState.current = state;
+                forceRender();
+            });
+        return () => subscription.unsubscribe();
+        // eslint-disable-next-line
+    }, []);
+
+    return selectedState.current;
 };
 
-const useDispatch = () => {
-    return useContext(SetStateContext);
-};
-
-const SetStateProvider: FC<{setState: (...args: any[]) => any}> = ({children, setState}) => {
-    return <SetStateContext.Provider value={setState}>{children}</SetStateContext.Provider>;
+const DispatchProvider: FC<{setState: (...args: any[]) => any}> = ({children, setState}) => {
+    return <DispatchContext.Provider value={setState}>{children}</DispatchContext.Provider>;
 };
 
 const StateProver: FC = ({children}) => {
     const [state, setState] = useState(defaultState);
-    const storeRef = useRef(defaultState);
+    const store$ = useMemo(() => new Subject<StateType>(), []);
+    const store = useRef<StateType>(state);
 
-    useEffect(() => {
-        storeRef.current = state;
-    }, [state]);
+    useUpdateEffect(() => {
+        store$.next(state);
+    }, [store$, state]);
 
     return (
-        <StateContext.Provider value={storeRef}>
-            <SetStateProvider setState={setState}>{children}</SetStateProvider>
-        </StateContext.Provider>
+        <StoreContext.Provider value={store}>
+            <StoreSubscriptionContext.Provider value={store$}>
+                <DispatchProvider setState={setState}>{children}</DispatchProvider>
+            </StoreSubscriptionContext.Provider>
+        </StoreContext.Provider>
     );
 };
 
 const StateShow: FC = () => {
-    const state = useStore();
-    const [, forceUpdate] = useState(0);
-    console.log('=====StateShow', state.count);
+    const count = useSelector((state) => state.count);
+    console.log('=====StateShow', count);
 
-    return (
-        <div>
-            {state.count}
-            <Button onClick={() => forceUpdate((a) => ++a)}>forceUpdate</Button>
-        </div>
-    );
+    return <div>{count}</div>;
 };
 
 const StrShow: FC = () => {
-    const state = useStore();
+    const str = useSelector((state) => state.str);
     console.log('=====Str');
-    return <div>{state.str}</div>;
+    return <div>{str}</div>;
 };
 
 const SetState: FC = () => {
     const dispatch = useDispatch();
 
     return (
-        <Button onClick={() => dispatch((state) => ({...state, count: state.count + 1}))}>+</Button>
+        <>
+            <Button onClick={() => dispatch((state) => ({...state, count: state.count + 1}))}>
+                +
+            </Button>
+            <Button
+                onClick={() => dispatch((state) => ({...state, str: `${new Date().getTime()}`}))}
+            >
+                str
+            </Button>
+        </>
     );
 };
 
