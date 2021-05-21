@@ -5,6 +5,7 @@ import {
     FormOutlined,
     DashboardOutlined,
     CustomerServiceOutlined,
+    LoadingOutlined,
 } from '@ant-design/icons';
 
 export type RouteConfig = Array<{
@@ -27,6 +28,12 @@ const routeConfig: RouteConfig = [
         icon: CustomerServiceOutlined,
         path: '/state-management',
         component: lazy(() => import('@/pages/state-management')),
+    },
+    {
+        title: '动画',
+        icon: LoadingOutlined,
+        path: '/animation',
+        component: lazy(() => import('@/pages/animation')),
     },
     {
         title: '个人页',
