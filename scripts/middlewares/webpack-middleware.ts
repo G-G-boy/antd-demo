@@ -5,7 +5,8 @@ import devConfig from '../../config/webpack.dev';
 
 export const HMR_PATH = '/__webpack_hmr';
 
-export default function webpackMiddleware(compiler: Compiler) {
+//TODO:
+export default function webpackMiddleware(compiler: Compiler): any {
     const publicPath = devConfig.output!.publicPath! as string;
 
     const devMiddlewareOptions: webpackDevMiddleware.Options = {
