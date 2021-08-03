@@ -8,5 +8,5 @@ svg {
 }
 
 a {
-    @apply text-primary no-underline outline-none;
+    @apply text-primary no-underline;
 }

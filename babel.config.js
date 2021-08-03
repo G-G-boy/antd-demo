@@ -7,7 +7,10 @@ const envPreset = [
     },
 ];
 
-module.exports = function (api) {
+/**
+ * @type {import("@babel/core").ConfigFunction}
+ */
+const configFn = (api) => {
     const presets = [
         '@babel/preset-typescript',
         envPreset,
@@ -45,3 +48,5 @@ module.exports = function (api) {
         },
     };
 };
+
+module.exports = configFn;
