@@ -30,7 +30,7 @@ const Login: FC = () => {
         <div className={styles.login_container}>
             <Form className={styles.login_content} name="basic" onFinish={onFinish}>
                 <div className={styles.login_title}>
-                    <h2>{formatMessage({id: 'login'})}</h2>
+                    <h2>{formatMessage({id: 'login', defaultMessage: '登录'})}</h2>
                 </div>
                 <Form.Item
                     name="username"
@@ -38,13 +38,19 @@ const Login: FC = () => {
                     rules={[
                         {
                             required: true,
-                            message: formatMessage({id: 'login.input.username.please'}),
+                            message: formatMessage({
+                                id: 'login.input.username.please',
+                                defaultMessage: '请输入用户名',
+                            }),
                         },
                     ]}
                 >
                     <Input
                         prefix={<UserOutlined className="text-gray-400" />}
-                        placeholder={formatMessage({id: 'login.username'})}
+                        placeholder={formatMessage({
+                            id: 'login.username',
+                            defaultMessage: '用户名',
+                        })}
                     />
                 </Form.Item>
                 <Form.Item
@@ -53,19 +59,22 @@ const Login: FC = () => {
                     rules={[
                         {
                             required: true,
-                            message: formatMessage({id: 'login.input.password.please'}),
+                            message: formatMessage({
+                                id: 'login.input.password.please',
+                                defaultMessage: '请输入密码',
+                            }),
                         },
                     ]}
                 >
                     <Input.Password
                         prefix={<LockOutlined className="text-gray-400" />}
                         type="password"
-                        placeholder={formatMessage({id: 'login.password'})}
+                        placeholder={formatMessage({id: 'login.password', defaultMessage: '密码'})}
                     />
                 </Form.Item>
                 <Form.Item>
                     <Button type="primary" htmlType="submit" className="w-full">
-                        {formatMessage({id: 'login'})}
+                        {formatMessage({id: 'login', defaultMessage: '登录'})}
                     </Button>
                 </Form.Item>
             </Form>

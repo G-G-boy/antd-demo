@@ -8,9 +8,9 @@
     "strict": true,
 
     /* Additional Checks */
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noImplicitReturns": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": false,
     "noFallthroughCasesInSwitch": true,
 
     /* Module Resolution Options */
