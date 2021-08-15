@@ -35,3 +35,21 @@ html {
     opacity: 0;
     transform: translateX(30px);
 }
+
+.video-js .vjs-title-bar {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+
+    display: none;
+    font-size: 2em;
+    padding: 0.5em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.video-js.vjs-paused.vjs-has-started .vjs-title-bar,
+.video-js.vjs-user-active.vjs-has-started .vjs-title-bar {
+    display: block;
+}

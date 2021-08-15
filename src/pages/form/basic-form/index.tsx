@@ -200,6 +200,7 @@ const BasicForm: FC = () => {
                             </FormItem>
                         </div>
                     </FormItem>
+                    <MyFormItem />
                     <FormItem {...submitFormLayout} style={{marginTop: 32}}>
                         <Button type="primary" htmlType="submit">
                             <FormattedMessage id="formandbasic-form.form.submit" />
@@ -216,6 +217,25 @@ const BasicForm: FC = () => {
                 </Form>
             </Card>
         </PageContainer>
+    );
+};
+
+const MyFormItem: FC = () => {
+    return (
+        <Form.Item name="xxxxxx">
+            <>
+                <Input />
+                <OtherFormItem />
+            </>
+        </Form.Item>
+    );
+};
+
+const OtherFormItem: FC = () => {
+    return (
+        <Form.Item name="yyyyyyyy">
+            <Input />
+        </Form.Item>
     );
 };
 

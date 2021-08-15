@@ -6,6 +6,7 @@ import {
     DashboardOutlined,
     CustomerServiceOutlined,
     LoadingOutlined,
+    VideoCameraAddOutlined,
 } from '@ant-design/icons';
 
 export type RouteConfig = Array<{
@@ -34,6 +35,12 @@ const routeConfig: RouteConfig = [
         icon: LoadingOutlined,
         path: '/animation',
         component: lazy(() => import('@/pages/animation')),
+    },
+    {
+        title: 'video',
+        icon: VideoCameraAddOutlined,
+        path: '/video',
+        component: lazy(() => import('@/pages/video')),
     },
     {
         title: '个人页',

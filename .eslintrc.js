@@ -6,8 +6,8 @@ module.exports = {
         'no-redeclare': 'off',
         '@typescript-eslint/no-redeclare': 'off',
         'jsx-a11y/anchor-is-valid': 'off',
-        'formatjs/enforce-default-message': ['error', 'literal'],
-        'formatjs/no-multiple-whitespaces': 'error',
-        'formatjs/no-camel-case': 'error',
+        // 'formatjs/enforce-default-message': ['error', 'literal'],
+        // 'formatjs/no-multiple-whitespaces': 'error',
+        // 'formatjs/no-camel-case': 'error',
     },
 };
