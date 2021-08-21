@@ -37,7 +37,7 @@ const VideoAlert: FC<VideoAlertProps> = (props) => {
 
 const Component = videoJs.getComponent('Component');
 
-class vjsAlert extends Component {
+class VjsAlert extends Component {
     constructor(player: VideoJsPlayer, options: any) {
         super(player, options);
         this.mount = this.mount.bind(this);
@@ -62,4 +62,4 @@ class vjsAlert extends Component {
     }
 }
 
-export default vjsAlert;
+export default VjsAlert;

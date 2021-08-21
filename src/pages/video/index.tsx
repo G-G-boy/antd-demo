@@ -1,13 +1,16 @@
 import {FC, useRef, useEffect} from 'react';
 import videoJs, {VideoJsPlayerOptions} from 'video.js';
 import PageContainer from '@/components/page-container';
-import vjsAlert, {VideoAlertProps} from './VideoAlert';
+import VjsAlert, {VideoAlertProps} from './VideoAlert';
 import TitleBar from './TitleBar';
-import {VideoForm} from './VideoForm';
-import {render, unmountComponentAtNode} from 'react-dom';
+import ModalPlugin from './plugin';
+import './video.css';
 
 videoJs.registerComponent('TitleBar', TitleBar);
-videoJs.registerComponent('vjsAlert', vjsAlert);
+videoJs.registerComponent('VjsAlert', VjsAlert);
+videoJs.registerPlugin('modal', ModalPlugin);
+
+export const VIDEO_ID = 'antd-video-demo';
 
 export const defaultVideoPlayerOptions: VideoJsPlayerOptions = {
     autoplay: true,
@@ -18,24 +21,14 @@ export const defaultVideoPlayerOptions: VideoJsPlayerOptions = {
     aspectRatio: '16:9',
     language: 'zh-CN',
     controlBar: {
-        pictureInPictureToggle: false,
-        // children: [
-        //     {name: 'playToggle'}, // 播放按钮
-        //     {name: 'currentTimeDisplay'}, // 当前已播放时间
-        //     {name: 'progressControl'}, // 播放进度条
-        //     {name: 'durationDisplay'}, // 总时间
-        //     {
-        //         name: 'volumePanel', // 音量控制
-        //         // @ts-ignore
-        //         inline: false, // 不使用水平方式
-        //     },
-        //     {
-        //         name: 'pictureInPictureToggle',
-        //     },
-        //     {
-        //         name: 'fullscreenToggle',
-        //     },
-        // ],
+        children: [
+            {name: 'playToggle'}, // 播放按钮
+            {name: 'progressControl'}, // 播放进度条
+            {name: 'currentTimeDisplay'}, // 当前已播放时间
+            {name: 'durationDisplay'}, // 总时间
+            {name: 'volumePanel'}, // 音量控制
+            {name: 'fullscreenToggle'},
+        ],
     },
     sources: [
         {
@@ -43,9 +36,12 @@ export const defaultVideoPlayerOptions: VideoJsPlayerOptions = {
             type: 'video/mp4',
         },
     ],
+    plugins: {
+        modal: {
+            title: '+++++++',
+        },
+    },
 };
-
-const ModalDialog = videoJs.getComponent('ModalDialog');
 
 videoJs.use('video/mp4', (player) => {
     return {
@@ -72,27 +68,7 @@ const VideoPlayer: FC = () => {
 
         const player = videoJs(videoNode.current, defaultVideoPlayerOptions, () => {
             player?.addChild('TitleBar', {text: videoTitle});
-            player?.addChild('vjsAlert', videoAlertProps);
-
-            const modal = new ModalDialog(player, {
-                content: '',
-                fillAlways: true,
-                // We don't want this modal to go away when it closes.
-                temporary: false,
-                uncloseable: true,
-            });
-
-            player.addChild(modal);
-
-            player.on('pause', () => {
-                modal.open();
-                render(<VideoForm player={player} />, modal.contentEl());
-            });
-
-            player.on('play', () => {
-                unmountComponentAtNode(modal.contentEl());
-                modal.close();
-            });
+            // player?.addChild('VjsAlert', videoAlertProps);
 
             player?.currentTime(10);
         });
@@ -104,8 +80,9 @@ const VideoPlayer: FC = () => {
         <PageContainer hasBg={false}>
             <div data-vjs-player className="w-full">
                 <video
+                    id={VIDEO_ID}
                     ref={videoNode}
-                    className="video-js vjs-big-play-centered"
+                    className="video-js vjs-big-play-centered vjs-sublime-skin"
                     webkit-playsinline=""
                     playsInline
                     x5-video-player-type="h5-page"
