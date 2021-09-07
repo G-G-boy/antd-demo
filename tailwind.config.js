@@ -46,7 +46,7 @@ const config = {
     variants: {
         extend: {},
     },
-    plugins: [],
+    plugins: [require('tailwindcss-rtl')],
     corePlugins: {
         ringWidth: false,
         ringColor: false,

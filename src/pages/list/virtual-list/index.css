@@ -1,0 +1,18 @@
+.item {
+    width: 100%;
+    padding: 20px;
+    border-bottom: 1px solid #000;
+}
+
+.item-span {
+    display: block;
+    color: rgba(0, 0, 0, 0.85);
+    font-weight: 500;
+    font-size: 14px;
+}
+
+.item-span-span {
+    width: 100%;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 16px;
+}

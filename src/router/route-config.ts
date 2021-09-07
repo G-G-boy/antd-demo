@@ -79,6 +79,11 @@ const routeConfig: RouteConfig = [
                 path: '/list/swr',
                 component: lazy(() => import('@/pages/list/basic-table')),
             },
+            {
+                title: '虚拟列表',
+                path: '/list/virtual',
+                component: lazy(() => import('@/pages/list/virtual-list')),
+            },
         ],
     },
     {
@@ -92,6 +97,11 @@ const routeConfig: RouteConfig = [
                 component: lazy(() => import('@/pages/form/basic-form')),
             },
         ],
+    },
+    {
+        title: '空白',
+        path: '/block',
+        component: lazy(() => import('@/pages/block')),
     },
 ];
 
