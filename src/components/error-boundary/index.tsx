@@ -3,7 +3,9 @@ import * as Sentry from '@sentry/react';
 
 const ErrorBoundary: FC = ({children}) => {
     return (
-        <Sentry.ErrorBoundary fallback={'An error has occurred'}>{children}</Sentry.ErrorBoundary>
+        <Sentry.ErrorBoundary fallback={<div>An error has occurred</div>}>
+            {children}
+        </Sentry.ErrorBoundary>
     );
 };
 
