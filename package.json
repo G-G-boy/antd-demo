@@ -24,6 +24,7 @@
     "@sentry/react": "^6.10.0",
     "@sentry/tracing": "^6.10.0",
     "@types/react-transition-group": "^4.4.2",
+    "@xstate/react": "^1.6.1",
     "ahooks": "^2.10.9",
     "antd": "^4.16.10",
     "axios": "^0.21.1",
@@ -52,7 +53,8 @@
     "rxjs": "^7.3.0",
     "swr": "^0.5.6",
     "video.js": "^7.14.3",
-    "xlsx": "^0.17.0"
+    "xlsx": "^0.17.0",
+    "xstate": "^4.25.0"
   },
   "devDependencies": {
     "@babel/core": "^7.14.8",

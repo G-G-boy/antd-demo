@@ -99,6 +99,11 @@ const routeConfig: RouteConfig = [
         ],
     },
     {
+        title: 'Xstate',
+        path: '/xstate',
+        component: lazy(() => import('@/pages/xstate')),
+    },
+    {
         title: '空白',
         path: '/block',
         component: lazy(() => import('@/pages/block')),

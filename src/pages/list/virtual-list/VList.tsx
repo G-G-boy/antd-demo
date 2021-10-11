@@ -1,6 +1,6 @@
 import {binarySearch, CompareResult} from './bst';
 import {Empty} from 'antd';
-import React, {ReactNode} from 'react';
+import {ReactNode, Component, createRef} from 'react';
 
 export interface VirtualListProps {
     height: number;
@@ -19,7 +19,7 @@ interface CachedPosition {
     dValue: number;
 }
 
-export default class VirtualList extends React.Component<VirtualListProps> {
+export default class VirtualList extends Component<VirtualListProps> {
     state = {
         scrollTop: 0,
     };
@@ -29,7 +29,7 @@ export default class VirtualList extends React.Component<VirtualListProps> {
     estimatedRowHeight = this.props.estimateRowHeight;
     bufferSize = this.props.bufferSize || 5;
 
-    scrollingContainer = React.createRef<HTMLDivElement>();
+    scrollingContainer = createRef<HTMLDivElement>();
 
     // params that use for calculate visible content
     limit = Math.ceil(this.height / this.estimatedRowHeight);
@@ -39,8 +39,8 @@ export default class VirtualList extends React.Component<VirtualListProps> {
 
     // handle dynamic inner content height
     cachedPositions: CachedPosition[] = [];
-    phantomContentRef = React.createRef<HTMLDivElement>();
-    actualContentRef = React.createRef<HTMLDivElement>();
+    phantomContentRef = createRef<HTMLDivElement>();
+    actualContentRef = createRef<HTMLDivElement>();
     phantomHeight = this.estimatedRowHeight * this.total;
 
     constructor(props) {

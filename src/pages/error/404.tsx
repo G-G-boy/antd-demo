@@ -1,8 +1,8 @@
 import {Button, Result} from 'antd';
-import React from 'react';
+import {FC} from 'react';
 import {useHistory} from 'react-router-dom';
 
-const NoFoundPage: React.FC = () => {
+const NoFoundPage: FC = () => {
     const history = useHistory();
     return (
         <Result
