@@ -1,6 +1,6 @@
 module.exports = {
     root: true,
-    extends: ['react-app', 'prettier'],
+    extends: ['react-app', 'plugin:cypress/recommended', 'prettier'],
     plugins: ['formatjs'],
     rules: {
         'no-redeclare': 'off',

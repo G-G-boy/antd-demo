@@ -4,3 +4,5 @@ node_modules
 dist
 .husky
 lang.json
+/cypress/screenshots/
+/cypress/videos/
