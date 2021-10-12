@@ -2,10 +2,10 @@ import {NecessityState, initialNecessityState} from '@/store/necessity/necessity
 import {NecessityActionType} from '@/store/necessity/necessity.action';
 import {Reducer} from 'redux';
 
-const necessityReducer: Reducer<NecessityState, NecessityActionType> = (state, action) => {
-    if (state === undefined) {
-        state = initialNecessityState;
-    }
+const necessityReducer: Reducer<NecessityState, NecessityActionType> = (
+    state = initialNecessityState,
+    action,
+) => {
     switch (action.type) {
         case 'SET_TOKEN_AND_REFRESH_TOKEN':
             return {...state, token: action.token, refreshToken: action.refreshToken};
