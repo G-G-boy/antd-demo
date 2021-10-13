@@ -6,7 +6,7 @@ import {Integrations} from '@sentry/tracing';
 import history from '@/router/history';
 import '@/theme/global.less';
 import '@/theme/tailwind.css';
-import 'antd/es/style';
+import 'antd/dist/antd.variable.min.css';
 import pkg from '../package.json';
 console.log('mockjs version:', Mock.version);
 

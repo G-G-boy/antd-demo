@@ -4,10 +4,10 @@ import store from '@/store';
 import Router from '@/router';
 import AppIntlProvider from '@/locale';
 import ErrorBoundary from '@/components/error-boundary';
-import {SWRConfig, ConfigInterface} from 'swr';
+import {SWRConfig, SWRConfiguration} from 'swr';
 import {withProfiler} from '@sentry/react';
 
-const swrConfig: ConfigInterface<any, any, (...args: any) => any | Promise<any>> = {
+const swrConfig: SWRConfiguration<any, any, (...args: any) => any | Promise<any>> = {
     revalidateOnFocus: false,
 };
 
@@ -19,10 +19,12 @@ const AppProvider: FC = ({children}) => {
     return <Provider store={store}>{children}</Provider>;
 };
 
-const composeProviders: (...args: ElementType[]) => ElementType = (...providers) => ({children}) =>
-    providers.reduce((prev, Provider) => {
-        return <Provider>{prev}</Provider>;
-    }, children);
+const composeProviders: (...args: ElementType[]) => ElementType =
+    (...providers) =>
+    ({children}) =>
+        providers.reduce((prev, Provider) => {
+            return <Provider>{prev}</Provider>;
+        }, children);
 
 const Providers = composeProviders(ErrorBoundary, AppIntlProvider, AppProvider, AppSwrConfig);
 

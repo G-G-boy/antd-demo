@@ -10,4 +10,19 @@ module.exports = {
         // 'formatjs/no-multiple-whitespaces': 'error',
         // 'formatjs/no-camel-case': 'error',
     },
+    overrides: [
+        {
+            files: '*.test.ts',
+            extends: ['plugin:jest/recommended'],
+            env: {
+                'jest/globals': true,
+            },
+            settings: {
+                jest: {
+                    version: require('jest/package.json').version,
+                },
+            },
+        },
+    ],
+    ignorePatterns: ['/node_modules/'],
 };

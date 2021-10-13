@@ -1,5 +1,5 @@
 import {FC, useState} from 'react';
-import {Dropdown, message} from 'antd';
+import {Dropdown, message, ConfigProvider} from 'antd';
 import {SketchPicker} from 'react-color';
 import svars from '@/theme/variables.module.less';
 import defaultSettings from '../../../defaultSettings';
@@ -11,8 +11,14 @@ const ThemeSelect: FC = () => {
 
     const changeTheme = (hex: string) => {
         document.body.style.setProperty('--color-primary', hex);
+        ConfigProvider.config({
+            theme: {
+                primaryColor: hex,
+            },
+        });
+        setColor(hex);
 
-        try {
+        /*try {
             window.less
                 .modifyVars({
                     '@primary-color': hex,
@@ -28,7 +34,7 @@ const ThemeSelect: FC = () => {
         } catch (e) {
             console.log(e);
             message.error(`修改主题色失败`);
-        }
+        }*/
     };
 
     const overlay = (

@@ -30,7 +30,8 @@ export default defineConfig(({command, mode}) => {
                 less: {
                     javascriptEnabled: true,
                     modifyVars: {
-                        '@primary-color': defaultSettings.primaryColor,
+                        // '@primary-color': defaultSettings.primaryColor,
+                        'root-entry-name': 'default',
                     },
                 },
             },
@@ -40,19 +41,19 @@ export default defineConfig(({command, mode}) => {
         },
         plugins: [
             reactRefresh(),
-            vitePluginImp({
-                libList: [
-                    {
-                        libName: 'antd',
-                        style: (name) => {
-                            if (name === 'row' || name === 'col') {
-                                return `antd/es/grid/style/index.less`;
-                            }
-                            return `antd/es/${name}/style/index.less`;
-                        },
-                    },
-                ],
-            }),
+            // vitePluginImp({
+            //     libList: [
+            //         {
+            //             libName: 'antd',
+            //             style: (name) => {
+            //                 if (name === 'row' || name === 'col') {
+            //                     return `antd/es/grid/style/index.less`;
+            //                 }
+            //                 return `antd/es/${name}/style/index.less`;
+            //             },
+            //         },
+            //     ],
+            // }),
         ],
     };
     return config;
