@@ -42,6 +42,12 @@ const Animation: FC = () => {
                 <div className="w-32 h-32  bg-white mx-4 shadow-xl" />
                 <div className="w-32 h-32  bg-white mx-4 shadow-2xl" />
             </div>
+            <div>
+                <h1 className="text-3xl">jit</h1>
+            </div>
+            <div className="flex">
+                <div className="h-[200px] w-[200px] bg-[#808080]"></div>
+            </div>
         </PageContainer>
     );
 };

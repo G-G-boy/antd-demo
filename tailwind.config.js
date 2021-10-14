@@ -2,6 +2,7 @@
  * @type {import("tailwindcss/tailwind-config").TailwindConfig}
  */
 const config = {
+    mode: 'jit',
     purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
     darkMode: false, // or 'media' or 'class'
     important: true,
@@ -47,17 +48,6 @@ const config = {
         extend: {},
     },
     plugins: [require('tailwindcss-rtl')],
-    corePlugins: {
-        ringWidth: false,
-        ringColor: false,
-        ringOpacity: false,
-        ringOffsetWidth: false,
-        ringOffsetColor: false,
-        outline: false,
-        appearance: false,
-        pointerEvents: false,
-        resize: false,
-    },
 };
 
 module.exports = config;
