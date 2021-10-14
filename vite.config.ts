@@ -3,6 +3,8 @@ import reactRefresh from '@vitejs/plugin-react-refresh';
 import vitePluginImp from 'vite-plugin-imp';
 import defaultSettings from './defaultSettings';
 import path from 'path';
+import analyze from 'rollup-plugin-analyzer';
+import {visualizer} from 'rollup-plugin-visualizer';
 
 export default defineConfig(({command, mode}) => {
     const config: UserConfig = {
@@ -41,6 +43,20 @@ export default defineConfig(({command, mode}) => {
         },
         plugins: [
             reactRefresh(),
+            command === 'build' &&
+                analyze({
+                    summaryOnly: true,
+                    hideDeps: true,
+                    filter: ({percent}) => {
+                        return percent >= 1;
+                    },
+                }),
+            command === 'build' &&
+                visualizer({
+                    open: true,
+                    gzipSize: true,
+                    brotliSize: true,
+                }),
             // vitePluginImp({
             //     libList: [
             //         {
@@ -54,7 +70,7 @@ export default defineConfig(({command, mode}) => {
             //         },
             //     ],
             // }),
-        ],
+        ].filter(Boolean),
     };
     return config;
 });

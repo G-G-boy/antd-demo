@@ -97,6 +97,7 @@ const commonConfig: Configuration = {
                             sourceMap: true,
                             lessOptions: {
                                 modifyVars: {
+                                    'root-entry-name': 'default',
                                     '@primary-color': defaultSettings.primaryColor,
                                 },
                                 javascriptEnabled: true,

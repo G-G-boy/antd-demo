@@ -2,9 +2,7 @@
  * @type {import("tailwindcss/tailwind-config").TailwindConfig}
  */
 const config = {
-    mode: 'jit',
-    purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
-    darkMode: false, // or 'media' or 'class'
+    content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
     important: true,
     theme: {
         extend: {
@@ -47,7 +45,7 @@ const config = {
     variants: {
         extend: {},
     },
-    plugins: [require('tailwindcss-rtl')],
+    plugins: [require('tailwindcss-rtl'), require('@tailwindcss/line-clamp')],
 };
 
 module.exports = config;
