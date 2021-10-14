@@ -4,9 +4,13 @@ module.exports = {
     plugins: ['formatjs'],
     rules: {
         'no-redeclare': 'off',
+
         '@typescript-eslint/no-redeclare': 'off',
+        '@typescript-eslint/no-unused-vars': 'off',
+
         'jsx-a11y/anchor-is-valid': 'off',
-        'formatjs/enforce-default-message': ['error', 'literal'],
+
+        'formatjs/enforce-default-message': ['warn', 'literal'],
         'formatjs/no-multiple-whitespaces': 'error',
         'formatjs/no-camel-case': 'error',
     },
@@ -24,5 +28,5 @@ module.exports = {
             },
         },
     ],
-    ignorePatterns: ['/node_modules/'],
+    ignorePatterns: ['/node_modules/', '/dist/'],
 };
