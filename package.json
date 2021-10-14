@@ -10,16 +10,16 @@
     "start:vite": "vite",
     "serve:vite": "vite preview",
     "build:vite": "tsc && vite build",
-    "lint": "eslint ./src/**/*.{ts,tsx}",
-    "lint.fix": "eslint --fix ./src/**/*.{ts,tsx}",
+    "lint": "eslint . --ext .ts,.tsx",
+    "lint:fix": "eslint . --fix --ext .ts,.tsx",
     "prettier": "prettier --write ./**/*.{ts,tsx,js,json,less}",
     "extract": "formatjs extract \"src/**/*.{ts,tsx}\" --out-file lang.json --pragma 'intl-meta'",
     "i18n": "ts-node --files -P ./config/tsconfig.json scripts/i18n.ts",
     "cypress:open": "cypress open",
     "cypress:open-ct": "cypress open-ct",
     "cypress:run-ct": "cypress run-ct",
-    "lint:jest": "tsc --project tsconfig.jest.json",
-    "lint:cypress": "tsc --project cypress/tsconfig.json",
+    "check-type:jest": "tsc --project tsconfig.jest.json",
+    "check-type:cypress": "tsc --project cypress/tsconfig.json",
     "test": "jest",
     "check-type": "tsc --noEmit"
   },
@@ -180,7 +180,10 @@
     }
   },
   "lint-staged": {
-    "./src/**/*.{ts,tsx}": "eslint --fix",
+    "*.{ts,tsx,js}": "eslint --fix",
+    "*.test.ts": [
+      "cross-env NODE_ENV=test jest --bail --findRelatedTests"
+    ],
     "*.{ts,tsx,css,less,js,json,md}": "prettier --write"
   },
   "browserslist": {
