@@ -7,7 +7,7 @@ module.exports = {
     testPathIgnorePatterns: ['/node_modules/'],
     transformIgnorePatterns: ['<rootDir>/(node_modules)/'],
     extensionsToTreatAsEsm: ['.ts'],
-    testEnvironment: 'node',
+    testEnvironment: 'jsdom',
     globals: {
         'ts-jest': {
             useESM: true,
