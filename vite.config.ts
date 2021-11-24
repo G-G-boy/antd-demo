@@ -31,10 +31,10 @@ export default defineConfig(({command, mode}) => {
             preprocessorOptions: {
                 less: {
                     javascriptEnabled: true,
-                    modifyVars: {
-                        // '@primary-color': defaultSettings.primaryColor,
-                        'root-entry-name': 'default',
-                    },
+                    // modifyVars: {
+                    //     // '@primary-color': defaultSettings.primaryColor,
+                    //     'root-entry-name': 'default',
+                    // },
                 },
             },
         },
