@@ -97,7 +97,6 @@ const commonConfig: Configuration = {
                             sourceMap: true,
                             lessOptions: {
                                 modifyVars: {
-                                    'root-entry-name': 'default',
                                     '@primary-color': defaultSettings.primaryColor,
                                 },
                                 javascriptEnabled: true,
@@ -162,17 +161,17 @@ const commonConfig: Configuration = {
             name: defaultSettings.title,
             color: defaultSettings.primaryColor,
         }),
-        new AntDesignThemePlugin({
-            antDir: resolveDirname('../node_modules/antd'),
-            stylesDir: resolveDirname('../src'),
-            varFile: resolveDirname('../src/theme/variables.module.less'),
-            themeVariables: ['@primary-color'],
-            indexFileName: 'index.html',
-            generateOnce: false,
-            lessUrl: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js',
-            publicPath: '',
-            customColorRegexArray: [],
-        }),
+        // new AntDesignThemePlugin({
+        //     antDir: resolveDirname('../node_modules/antd'),
+        //     stylesDir: resolveDirname('../src'),
+        //     varFile: resolveDirname('../src/theme/variables.module.less'),
+        //     themeVariables: ['@primary-color'],
+        //     indexFileName: 'index.html',
+        //     generateOnce: false,
+        //     lessUrl: 'https://cdnjs.cloudflare.com/ajax/libs/less.js/2.7.2/less.min.js',
+        //     publicPath: '',
+        //     customColorRegexArray: [],
+        // }),
         new FriendlyErrorsPlugin(),
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
