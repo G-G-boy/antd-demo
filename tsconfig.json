@@ -71,5 +71,5 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "include": ["./src/*"],
-  "exclude": ["src/*.test.ts", "cypress/**/*.spec.ts"]
+  "exclude": ["src/*.test.ts", "cypress/**/*.spec.ts", "src/**/*.spec.tsx"]
 }
