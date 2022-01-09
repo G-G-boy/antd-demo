@@ -1,5 +1,6 @@
 import {LangType} from '@/store/necessity/necessity.state';
 import * as storageService from '@/util/storage.service';
+import {DirectionType} from 'antd/lib/config-provider/context';
 
 export const setTokenAndRefreshToken = (token: string, refreshToken: string) => {
     storageService.setAccessToken(token);
@@ -33,8 +34,16 @@ export const setLang = (lang: LangType) => {
     };
 };
 
+export const setDirection = (direction: DirectionType) => {
+    return <const>{
+        type: 'SET_DIR',
+        direction,
+    };
+};
+
 export type NecessityActionType =
     | ReturnType<typeof setTokenAndRefreshToken>
     | ReturnType<typeof setLoading>
     | ReturnType<typeof setToken>
-    | ReturnType<typeof setLang>;
+    | ReturnType<typeof setLang>
+    | ReturnType<typeof setDirection>;

@@ -15,6 +15,8 @@ const necessityReducer: Reducer<NecessityState, NecessityActionType> = (
             return {...state, token: action.token};
         case 'SET_LANG':
             return {...state, lang: action.lang};
+        case 'SET_DIR':
+            return {...state, direction: action.direction};
         default:
             return state;
     }

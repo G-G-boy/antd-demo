@@ -48,7 +48,11 @@ const config = {
     variants: {
         extend: {},
     },
-    plugins: [require('tailwindcss-rtl'), require('@tailwindcss/line-clamp')],
+    plugins: [
+        require('tailwindcss-rtl'),
+        require('tailwindcss-flip'),
+        require('@tailwindcss/line-clamp'),
+    ],
 };
 
 module.exports = config;
