@@ -4,6 +4,9 @@
 const config = {
     content: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
     important: true,
+    corePlugins: {
+        preflight: false,
+    },
     theme: {
         extend: {
             colors: {
