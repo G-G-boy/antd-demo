@@ -39,7 +39,6 @@ export default defineConfig(({command, mode}) => {
                 output: {
                     manualChunks: {
                         react: ['react', 'react-dom'],
-                        faker: ['faker'],
                         echarts: ['echarts'],
                         vendor: [
                             'lodash-es',
