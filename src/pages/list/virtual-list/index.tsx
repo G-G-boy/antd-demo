@@ -1,6 +1,5 @@
 import {FC} from 'react';
 import PageContainer from '@/components/page-container';
-import faker from 'faker';
 import Vlist from './VList';
 import './index.css';
 
@@ -9,7 +8,7 @@ const dataLength = 10000;
 for (let id = 0; id < dataLength; ++id) {
     data.push({
         id,
-        value: faker.lorem.sentences(),
+        value: Math.random().toString(),
     });
 }
 
