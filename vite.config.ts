@@ -6,6 +6,7 @@ import path from 'path';
 import analyze from 'rollup-plugin-analyzer';
 import {visualizer} from 'rollup-plugin-visualizer';
 import externalGlobals from 'rollup-plugin-external-globals';
+import mkcert from 'vite-plugin-mkcert';
 
 const viteCDN = (cdns: string[]): Plugin => {
     return {
@@ -88,6 +89,7 @@ export default defineConfig(({command, mode}) => {
         },
         plugins: [
             reactRefresh(),
+            mkcert(),
             command === 'build' &&
                 externalGlobals({
                     'video.js': 'videojs',
